@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import com.project.domain.request.CreateUserRequestDto;
+import com.project.domain.request.UpdateUserRequestDto;
 import com.project.domain.response.AppResponse;
 import com.project.model.User;
 import com.project.service.userService;
@@ -26,23 +27,18 @@ public class UserController {
 		return ResponseEntity.ok().body(appResponse);
 	}
 	@GetMapping(value = "/{userId}")
-	public User getUser(@PathVariable int userId) {
-    User us = userService.listByUserId(userId);
-
-		return us;
+	public ResponseEntity<AppResponse>  getUser(@PathVariable int userId) {
+		return ResponseEntity.ok().body(userService.ByUserId(userId));
 	}
 	
 	@DeleteMapping(value = "/deleteUser/{userId}")
-	public void delete(@PathVariable int userId) {
+	public  ResponseEntity<AppResponse> delete(@PathVariable int userId) {
 
-		userService.deleteUser(userId);
-		
+		return ResponseEntity.ok().body(userService.deleteUser(userId));
 	}
-	
 	@PutMapping("/updateUser/{userId}")
-	public User updateUser(@PathVariable int userId,@RequestBody User user) {
-		user.setUserId(userId);
-		return userService.updateUser(user);
+	public ResponseEntity<AppResponse> updateUser(@PathVariable int userId,@RequestBody UpdateUserRequestDto requestDto) {
+		return ResponseEntity.ok().body(userService.updateUser(requestDto, userId));
 	}
 
 }

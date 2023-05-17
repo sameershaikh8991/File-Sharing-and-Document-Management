@@ -1,6 +1,7 @@
 package com.project.service;
 
 import com.project.domain.request.CreateUserRequestDto;
+import com.project.domain.request.UpdateUserRequestDto;
 import com.project.domain.response.AppResponse;
 import com.project.model.User;
 
@@ -10,11 +11,11 @@ public interface userService {
 
     AppResponse saveUser(CreateUserRequestDto requestDto);
 
-    User listByUserId(int userId);
+    AppResponse ByUserId(int userId);
 
-    void deleteUser(int userId);
+    AppResponse deleteUser(int userId);
 
-    User updateUser(User user);
+    AppResponse updateUser(UpdateUserRequestDto requestDto,int userId);
 
     List<User> listAll();
 }
