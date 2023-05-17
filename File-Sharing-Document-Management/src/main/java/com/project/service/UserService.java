@@ -7,7 +7,7 @@ import com.project.model.User;
 
 import java.util.List;
 
-public interface userService {
+public interface UserService {
 
     AppResponse saveUser(CreateUserRequestDto requestDto);
 

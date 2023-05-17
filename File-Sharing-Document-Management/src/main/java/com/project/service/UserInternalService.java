@@ -4,7 +4,7 @@ import com.project.model.User;
 
 import java.util.List;
 
-public interface userInternalService {
+public interface UserInternalService {
 
     User saveUser(User user);
 

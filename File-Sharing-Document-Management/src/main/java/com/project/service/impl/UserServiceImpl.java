@@ -7,23 +7,21 @@ import com.project.domain.response.AppResponse;
 import com.project.domain.response.CreateUserResponseDto;
 import com.project.helper.UserHelper;
 import com.project.model.User;
-import com.project.repository.UserRepository;
 import com.project.service.MessageSourceService;
-import com.project.service.userInternalService;
-import com.project.service.userService;
+import com.project.service.UserInternalService;
+import com.project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements userService {
+public class UserServiceImpl implements UserService {
 
-	private  final userInternalService userInternalService;
+	private  final UserInternalService userInternalService;
 	private final MessageSourceService messageSourceService;
 
 	@Override

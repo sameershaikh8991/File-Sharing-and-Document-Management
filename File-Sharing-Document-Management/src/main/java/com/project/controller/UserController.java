@@ -3,8 +3,7 @@ package com.project.controller;
 import com.project.domain.request.CreateUserRequestDto;
 import com.project.domain.request.UpdateUserRequestDto;
 import com.project.domain.response.AppResponse;
-import com.project.model.User;
-import com.project.service.userService;
+import com.project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ public class UserController {
 
 
 
-	private final userService userService;
+	private final UserService userService;
 
 
 	

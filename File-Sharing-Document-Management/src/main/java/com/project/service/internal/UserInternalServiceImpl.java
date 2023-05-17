@@ -3,7 +3,7 @@ package com.project.service.internal;
 
 import com.project.model.User;
 import com.project.repository.UserRepository;
-import com.project.service.userInternalService;
+import com.project.service.UserInternalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class userInternalServiceImpl  implements userInternalService {
+public class UserInternalServiceImpl implements UserInternalService {
 
     private  final UserRepository userRepository;
 
