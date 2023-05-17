@@ -1,24 +1,29 @@
 package com.project.controller;
 
+import com.project.domain.request.CreateUserRequestDto;
+import com.project.domain.response.AppResponse;
 import com.project.model.User;
-import com.project.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.project.service.userService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/user")
+@RequiredArgsConstructor
 public class UserController {
 
 
-	@Autowired
-	private UserService userService;
+
+	private final userService userService;
 
 
 	
 	@PostMapping(value = "/saveUser")
-	public User saveUser(@RequestBody User user) {
-		User us = userService.saveUser(user);
-		return us;
+	public ResponseEntity<AppResponse>  saveUser(@RequestBody CreateUserRequestDto requestDto) {
+
+		AppResponse appResponse = userService.saveUser(requestDto);
+		return ResponseEntity.ok().body(appResponse);
 	}
 	@GetMapping(value = "/{userId}")
 	public User getUser(@PathVariable int userId) {
