@@ -12,7 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateUserRequestDto {
 
-    private String userName;
+    private String firstName;
+
+    private String lastName;
 
     //    @NotEmpty(message = "Rejection reason must be provided")
     private String userEmail;

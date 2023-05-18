@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 @Service
@@ -31,6 +32,8 @@ public class UserServiceImpl implements UserService {
 		User saveUser = userInternalService.saveUser(user);
 
 		CreateUserResponseDto createUserResponseDto = UserHelper.buildUserResponseDto(saveUser);
+
+		createFolder(saveUser.getUserEmail());
 
 		return new AppResponse(HttpStatus.CREATED.value(),
 				"user.created.successfully",
@@ -81,14 +84,34 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private User updateUser(User user, UpdateUserRequestDto requestDto) {
-		if (StringUtils.isNotBlank(requestDto.getUserName()))
-			user.setUserName(requestDto.getUserName());
+		if (StringUtils.isNotBlank(requestDto.getFirstName()))
+			user.setFirstName(requestDto.getFirstName());
+
+		if (StringUtils.isNotBlank(requestDto.getLastName()))
+			user.setLastName(requestDto.getLastName());
 
 		if (StringUtils.isNotBlank(requestDto.getUserEmail()))
 			user.setUserEmail(requestDto.getUserEmail());
 
 
 		return userInternalService.saveUser(user);
+	}
+
+	private  void createFolder(String fname){
+
+		String folderPath = "./src/main/resources/"+fname;
+		File folder = new File(folderPath);
+
+		if (!folder.exists()) {
+			boolean created = folder.mkdirs();
+			if (created) {
+				System.out.println("Folder created successfully.");
+			} else {
+				System.out.println("Failed to create folder.");
+			}
+		} else {
+			System.out.println("Folder already exists.");
+		}
 	}
 
 
