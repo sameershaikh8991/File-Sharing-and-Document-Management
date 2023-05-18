@@ -6,6 +6,7 @@ import com.project.domain.request.UpdateUserRequestDto;
 import com.project.domain.response.AppResponse;
 import com.project.domain.response.CreateUserResponseDto;
 import com.project.helper.UserHelper;
+import com.project.model.NotificationEmail;
 import com.project.model.User;
 import com.project.service.MessageSourceService;
 import com.project.service.UserInternalService;
@@ -25,13 +26,18 @@ public class UserServiceImpl implements UserService {
 	private  final UserInternalService userInternalService;
 	private final MessageSourceService messageSourceService;
 
+	private final  MailService mailService;
+
+
+
 	@Override
 	public AppResponse saveUser(CreateUserRequestDto requestDto) throws Exception {
 		User user = UserHelper.buildCreateUser(requestDto);
 
+		mailService.sendMail(new NotificationEmail("Thank you for signing up",
+				user.getEmail(), "Thank you for signing up to Spring FileHub,"));
+
 		User saveUser = userInternalService.saveUser(user);
-
-
 
 		CreateUserResponseDto createUserResponseDto = UserHelper.buildUserResponseDto(saveUser);
 
