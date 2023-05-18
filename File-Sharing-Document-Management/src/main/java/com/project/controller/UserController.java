@@ -20,7 +20,7 @@ public class UserController {
 	private final UserService userService;
 
 	@PostMapping(value = "/saveUser")
-	public ResponseEntity<AppResponse>  saveUser(@RequestBody CreateUserRequestDto requestDto) {
+	public ResponseEntity<AppResponse>  saveUser(@RequestBody CreateUserRequestDto requestDto) throws Exception {
 
 		AppResponse appResponse = userService.saveUser(requestDto);
 		return ResponseEntity.ok().body(appResponse);
@@ -36,7 +36,7 @@ public class UserController {
 		return ResponseEntity.ok().body(userService.deleteUser(userId));
 	}
 	@PutMapping("/updateUser/{userId}")
-	public ResponseEntity<AppResponse> updateUser(@PathVariable int userId,@RequestBody UpdateUserRequestDto requestDto) {
+	public ResponseEntity<AppResponse> updateUser(@PathVariable int userId,@RequestBody UpdateUserRequestDto requestDto) throws Exception {
 		return ResponseEntity.ok().body(userService.updateUser(requestDto, userId));
 	}
 

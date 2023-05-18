@@ -9,13 +9,15 @@ import java.util.List;
 
 public interface UserService {
 
-    AppResponse saveUser(CreateUserRequestDto requestDto);
+    AppResponse saveUser(CreateUserRequestDto requestDto) throws Exception;
 
     AppResponse ByUserId(int userId);
 
+//    AppResponse getByEmail(String email);
+
     AppResponse deleteUser(int userId);
 
-    AppResponse updateUser(UpdateUserRequestDto requestDto,int userId);
+    AppResponse updateUser(UpdateUserRequestDto requestDto,int userId) throws Exception;
 
     List<User> listAll();
 }

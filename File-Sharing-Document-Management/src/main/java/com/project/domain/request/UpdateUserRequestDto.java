@@ -16,6 +16,5 @@ public class UpdateUserRequestDto {
 
     private String lastName;
 
-    //    @NotEmpty(message = "Rejection reason must be provided")
-    private String userEmail;
+    private String email;
 }

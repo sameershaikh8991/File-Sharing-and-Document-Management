@@ -26,14 +26,16 @@ public class UserServiceImpl implements UserService {
 	private final MessageSourceService messageSourceService;
 
 	@Override
-	public AppResponse saveUser(CreateUserRequestDto requestDto) {
+	public AppResponse saveUser(CreateUserRequestDto requestDto) throws Exception {
 		User user = UserHelper.buildCreateUser(requestDto);
 
 		User saveUser = userInternalService.saveUser(user);
 
+
+
 		CreateUserResponseDto createUserResponseDto = UserHelper.buildUserResponseDto(saveUser);
 
-		createFolder(saveUser.getUserEmail());
+		createFolder(saveUser.getEmail());
 
 		return new AppResponse(HttpStatus.CREATED.value(),
 				"user.created.successfully",
@@ -52,6 +54,15 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+//	@Override
+//	public AppResponse getByEmail(String email) {
+//		User user = userInternalService.findByEmail(email);
+//		return new AppResponse(HttpStatus.OK.value(),
+//				"user.retrieved.successfully",
+//				"user.retrieved.successfully",
+//				UserHelper.buildUserResponseDto(user), null);
+//	}
+
 	@Override
 	public AppResponse deleteUser(int userId) {
 		userInternalService.DeleteUserById(userId);
@@ -68,7 +79,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public AppResponse updateUser(UpdateUserRequestDto requestDto,int userId) {
+	public AppResponse updateUser(UpdateUserRequestDto requestDto,int userId) throws Exception {
 
 
 		User user = userInternalService.findById(userId);
@@ -83,15 +94,15 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-	private User updateUser(User user, UpdateUserRequestDto requestDto) {
+	private User updateUser(User user, UpdateUserRequestDto requestDto) throws Exception {
 		if (StringUtils.isNotBlank(requestDto.getFirstName()))
 			user.setFirstName(requestDto.getFirstName());
 
 		if (StringUtils.isNotBlank(requestDto.getLastName()))
 			user.setLastName(requestDto.getLastName());
 
-		if (StringUtils.isNotBlank(requestDto.getUserEmail()))
-			user.setUserEmail(requestDto.getUserEmail());
+		if (StringUtils.isNotBlank(requestDto.getEmail()))
+			user.setEmail(requestDto.getEmail());
 
 
 		return userInternalService.saveUser(user);

@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface UserInternalService {
 
-    User saveUser(User user);
+    User saveUser(User user) throws Exception;
 
     User findById(int id);
+
+//    User findByEmail(String email);
 
     void DeleteUserById(int id);
 
